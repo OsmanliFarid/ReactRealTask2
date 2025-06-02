@@ -9,6 +9,7 @@ const Users = () => {
     { id: 5, username: "emin" },
   ]);
   const [UserName, SetUserName] = useState("");
+  const [UserName2, SetUserName2] = useState(users);
   const CreateUser = (e) => {
     e.preventDefault();
     const newuser = users.filter((item) => item.username === UserName);
@@ -26,7 +27,15 @@ const Users = () => {
       SetUserName("");
     }
   };
+  const [Search, SetSearch] = useState("");
 
+  const SearchClick = (title) => {
+    SetSearch(title);
+    const filt = UserName2.filter((item) =>
+      item.username.toLowerCase().includes(title.toLowerCase())
+    );
+    setUsers(filt);
+  };
   return (
     <>
       <div className="p-6 max-w-4xl mx-auto">
@@ -41,6 +50,25 @@ const Users = () => {
               value={UserName}
               onChange={(e) => SetUserName(e.target.value)}
               placeholder="Yeni istifadəçi adı"
+              className="w-full flex-1 px-4 py-2 border border-gray-300 rounded-lg  focus:ring-blue-400"
+            />
+            <input
+              type="submit"
+              value="Əlavə et"
+              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition"
+            />
+          </form>
+        </div>
+        <div className="mb-8 mt-8">
+          <form
+            method="get"
+            className="flex flex-col sm:flex-row items-center gap-4 bg-white p-4 shadow-md rounded-lg"
+          >
+            <input
+              type="text"
+              value={Search}
+              onChange={(e) => SearchClick(e.target.value)}
+              placeholder="istifadeci axtarisi"
               className="w-full flex-1 px-4 py-2 border border-gray-300 rounded-lg  focus:ring-blue-400"
             />
             <input
