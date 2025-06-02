@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
+import { MdOutlineMedicalInformation } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
 
 const Users = () => {
   const [users, setUsers] = useState([
@@ -31,6 +33,8 @@ const Users = () => {
 
   const SearchClick = (title) => {
     SetSearch(title);
+    console.log(title);
+
     const filt = UserName2.filter((item) =>
       item.username.toLowerCase().includes(title.toLowerCase())
     );
@@ -38,6 +42,13 @@ const Users = () => {
 
     setUsers(filt);
   };
+  const [Modal, SetModal] = useState(false);
+  const [newuser, setnewuser] = useState({});
+  const ClickUser = (user) => {
+    SetModal(!Modal);
+    setnewuser(user);
+  };
+
   return (
     <>
       <div className="p-6 max-w-4xl mx-auto">
@@ -85,10 +96,43 @@ const Users = () => {
               <h2 className="text-xl font-bold text-gray-800 mb-2">
                 {user.username}
               </h2>
-              <p className="text-gray-600">ID: {user.id}</p>
+              <div className="flex justify-between items-center">
+                <p className="text-gray-600">ID: {user.id}</p>
+                <MdOutlineMedicalInformation
+                  className="text-3xl cursor-pointer"
+                  onClick={() => ClickUser(user)}
+                />
+              </div>
             </div>
           ))}
         </div>
+      </div>
+      <div className="modal">
+        {Modal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                İstifadəçi məlumatları
+              </h2>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">ID:</span> {newuser.id}
+              </p>
+              <p className="text-gray-700 mb-4">
+                <span className="font-semibold">
+                  İstifadəçi adı: {newuser.username}
+                </span>
+              </p>
+              <div className="flex justify-end">
+                <button
+                  onClick={() => SetModal(!Modal)}
+                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                >
+                  <IoClose />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
