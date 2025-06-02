@@ -34,6 +34,8 @@ const Users = () => {
     const filt = UserName2.filter((item) =>
       item.username.toLowerCase().includes(title.toLowerCase())
     );
+    console.log(filt);
+
     setUsers(filt);
   };
   return (
@@ -70,11 +72,6 @@ const Users = () => {
               onChange={(e) => SearchClick(e.target.value)}
               placeholder="istifadeci axtarisi"
               className="w-full flex-1 px-4 py-2 border border-gray-300 rounded-lg  focus:ring-blue-400"
-            />
-            <input
-              type="submit"
-              value="Əlavə et"
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition"
             />
           </form>
         </div>
