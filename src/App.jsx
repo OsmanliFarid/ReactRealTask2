@@ -3,7 +3,7 @@ import Home from "./Pages/Home/Index";
 
 const App = () => {
   return (
-    <div className="">
+    <div className="s">
       <Home />
     </div>
   );
