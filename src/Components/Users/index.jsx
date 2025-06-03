@@ -107,17 +107,18 @@ const Users = () => {
           ))}
         </div>
       </div>
-      <div className="modal">
+
+      <div className="modal ">
         {Modal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg">
               <h2 className="text-2xl font-bold text-gray-800 mb-4">
                 İstifadəçi məlumatları
               </h2>
-              <p className="text-gray-700 mb-2">
+              <p className="text-gray-700  mb-2">
                 <span className="font-semibold">ID:</span> {newuser.id}
               </p>
-              <p className="text-gray-700 mb-4">
+              <p className="text-gray-700  mb-4">
                 <span className="font-semibold">
                   İstifadəçi adı: {newuser.username}
                 </span>
@@ -125,7 +126,7 @@ const Users = () => {
               <div className="flex justify-end">
                 <button
                   onClick={() => SetModal(!Modal)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                  className="bg-red-500  text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
                 >
                   <IoClose />
                 </button>
